@@ -1,11 +1,40 @@
-# ---> Vue
-# gitignore template for Vue.js projects
-#
-# Recommended template: Node.gitignore
+# Dependencies
+node_modules/
+.nuxt/
+.nyc_output/
 
-# TODO: where does this rule come from?
-docs/_book
+# Production build
+dist/
+.output/
+build/
 
-# TODO: where does this rule come from?
-test/
+# Environment files
+.env*
+!.env.example
 
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+logs/
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Nuxt specific
+.nuxt
+.nuxt2
+.nuxt3
+.nuxt-devtools
+
+# Vue related
+*.vue~
+
+# Local development files
+*.local
