@@ -9,12 +9,6 @@ export default defineNuxtPlugin(() => {
     return
   }
 
-  // Create script element
-  const script = document.createElement('script')
-  script.async = true
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${id}`
-  document.head.appendChild(script)
-
   // Initialize gtag
   window.dataLayer = window.dataLayer || []
   
@@ -28,4 +22,12 @@ export default defineNuxtPlugin(() => {
   
   gtag('js', new Date())
   gtag('config', id)
+  
+  // 添加路由变化跟踪
+  const router = useRouter()
+  router.afterEach((to) => {
+    gtag('config', id, {
+      page_path: to.fullPath,
+    })
+  })
 })

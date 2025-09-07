@@ -10,6 +10,14 @@ export default defineNuxtConfig({
       autoprefixer: {}
     }
   },
+  runtimeConfig: {
+    public: {
+      googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID
+    }
+  },
+  plugins: [
+    '~/plugins/google-analytics.client.ts'
+  ],
   // 添加构建配置以解决可能的构建问题
   build: {
     transpile: []
@@ -21,11 +29,11 @@ export default defineNuxtConfig({
   ],
   app: {
     head: {
-      link: [
-        { 
-          rel: 'icon', 
-          type: 'image/x-icon', 
-          href: '/favicon.ico' 
+      script: [
+        {
+          src: `https://www.googletagmanager.com/gtag/js`,
+          async: true,
+          defer: true
         }
       ]
     }
