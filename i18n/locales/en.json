@@ -1,0 +1,48 @@
+{
+  "site": {
+    "title": "Toolkit"
+  },
+  "nav": {
+    "feedback": "Feedback",
+    "language": "Language",
+    "lightMode": "Switch to light mode",
+    "darkMode": "Switch to dark mode"
+  },
+  "footer": {
+    "copyright": "Â© {year} Toolkit Playground. All rights reserved.",
+    "about": "About Us",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "contact": "Contact Us"
+  },
+  "categories": {
+    "1": { "name": "Development Tools" },
+    "101": { "name": "Code Processing" },
+    "102": { "name": "Text Processing" },
+    "2": { "name": "Image Processing" },
+    "201": { "name": "Image Editing" },
+    "3": { "name": "Network Tools" },
+    "301": { "name": "IP Query" },
+    "1001": { "name": "Base64 Encode/Decode" },
+    "1002": { "name": "JSON Formatter" },
+    "1003": { "name": "Timestamp Converter" },
+    "1004": { "name": "Text Comparison" },
+    "1005": { "name": "Regular Expression" },
+    "2001": { "name": "Image Compression" },
+    "2002": { "name": "Format Conversion" },
+    "3001": { "name": "IP Address Lookup" }
+  },
+  "breadcrumb": {
+    "home": "Home"
+  },
+  "tool": {
+    "description": "This is the detailed page for the {name} tool",
+    "area": "Tool Area",
+    "implementation": "Tool functionality will be implemented here"
+  },
+  "home": {
+    "welcome": "Welcome to Toolkit Playground",
+    "description": "One-stop toolset to enhance your development efficiency",
+    "explore": "Explore {name} tools"
+  }
+}

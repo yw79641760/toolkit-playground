@@ -33,29 +33,8 @@
 </template>
 
 <script setup>
-// 添加面包屑翻译文本
-const breadcrumbTranslations = {
-  'zh-CN': {
-    breadcrumb: {
-      home: '首页'
-    }
-  },
-  'en': {
-    breadcrumb: {
-      home: 'Home'
-    }
-  }
-};
-
-// 获取语言管理composable
-import { useLanguage } from '~/assets/js/useLanguage';
-// 新增: 导入语言工具函数
-import { languageUtils } from '~/assets/js/languageUtils';
-const { t: $t, currentLanguage } = useLanguage();
-
-// 合并翻译文本到全局翻译对象
-// 修改: 使用工具函数处理翻译文本合并
-languageUtils.addTranslations(breadcrumbTranslations);
+// 修改: 使用标准的$t函数
+const { locale } = useI18n();
 
 const props = defineProps({
   category: Object,
@@ -63,16 +42,5 @@ const props = defineProps({
   item: Object
 });
 
-// 修改: 添加响应式变量用于强制更新
-// 修改: 使用工具函数创建强制更新机制
-const { forceUpdate, triggerUpdate } = languageUtils.createForceUpdate();
 
-// 修改: 监听语言变化事件，强制组件更新
-// 修改: 使用工具函数设置语言变化监听器
-languageUtils.setupLanguageChangeListener(triggerUpdate);
-
-// 添加一个计算属性来触发更新
-const displayText = computed(() => {
-  return forceUpdate.value ? 'update' : 'update';
-});
 </script>

@@ -30,34 +30,6 @@
 </template>
 
 <script setup>
-// 添加工具页面翻译文本
-const toolTranslations = {
-  'zh-CN': {
-    tool: {
-      description: '这是 {name} 工具的详细页面',
-      area: '工具区域',
-      implementation: '工具功能将在此处实现'
-    }
-  },
-  'en': {
-    tool: {
-      description: 'This is the detailed page for the {name} tool',
-      area: 'Tool Area',
-      implementation: 'Tool functionality will be implemented here'
-    }
-  }
-};
-
-// 获取语言管理composable
-import { useLanguage } from '~/assets/js/useLanguage';
-// 新增: 导入语言工具函数
-import { languageUtils } from '~/assets/js/languageUtils';
-const { t: $t, currentLanguage } = useLanguage();
-
-// 合并翻译文本到全局翻译对象
-// 修改: 使用工具函数处理翻译文本合并
-languageUtils.addTranslations(toolTranslations);
-
 // 获取路由参数
 const route = useRoute();
 const router = useRouter();
@@ -88,17 +60,6 @@ watch(() => route.params.id, async (newId) => {
   }
 }, { immediate: true });
 
-// 添加语言变化监听
-// 修改: 使用工具函数设置语言变化监听器
-languageUtils.setupLanguageChangeListener(() => {
-  // 语言变化时更新页面标题
-  if (currentItem.value) {
-    useHead({
-      title: `${$t(`categories.${currentItem.value.id}.name`)} - toolkit`
-    });
-  }
-});
-
 async function loadToolComponent(id) {
   try {
     // 尝试动态导入对应的工具组件
@@ -116,8 +77,4 @@ async function loadToolComponent(id) {
 useHead({
   title: currentItem.value ? `${$t(`categories.${currentItem.value.id}.name`)} - toolkit` : '工具 - toolkit'
 });
-
-// 添加强制更新机制
-// 修改: 使用工具函数创建强制更新机制
-const { forceUpdate, triggerUpdate } = languageUtils.createForceUpdate();
 </script>

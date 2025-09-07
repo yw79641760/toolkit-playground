@@ -19,34 +19,6 @@
 </template>
 
 <script setup>
-// 添加首页翻译文本
-const homeTranslations = {
-  'zh-CN': {
-    home: {
-      welcome: '欢迎来到 Toolkit Playground',
-      description: '一站式工具集，提升您的开发效率',
-      explore: '探索{name}工具'
-    }
-  },
-  'en': {
-    home: {
-      welcome: 'Welcome to Toolkit Playground',
-      description: 'One-stop toolset to enhance your development efficiency',
-      explore: 'Explore {name} tools'
-    }
-  }
-};
-
-// 获取语言管理composable
-import { useLanguage } from '~/assets/js/useLanguage';
-// 新增: 导入语言工具函数
-import { languageUtils } from '~/assets/js/languageUtils';
-const { t: $t, currentLanguage } = useLanguage();
-
-// 合并翻译文本到全局翻译对象
-// 修改: 使用工具函数处理翻译文本合并
-languageUtils.addTranslations(homeTranslations);
-
 // 获取布局中的状态
 const selectedCategory = inject('selectedCategory', ref(null));
 
@@ -57,16 +29,4 @@ const { categories } = await import('~/assets/js/useCategories').then(m => m.use
 const selectCategory = (category) => {
   selectedCategory.value = category;
 };
-
-// 监听语言变化以触发重新渲染
-// 修改: 使用工具函数创建强制更新机制
-const { forceUpdate, triggerUpdate } = languageUtils.createForceUpdate();
-
-// 修改: 使用工具函数设置语言变化监听器
-languageUtils.setupLanguageChangeListener(triggerUpdate);
-
-// 添加一个计算属性来触发更新
-const displayText = computed(() => {
-  return forceUpdate.value ? 'update' : 'update';
-});
 </script>

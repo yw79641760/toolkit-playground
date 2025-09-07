@@ -90,7 +90,7 @@
         </div>
       </div>
     </header>
-
+    
     <div class="flex flex-1">
       <!-- 侧边栏 -->
       <aside v-if="selectedCategory" class="bg-white shadow-md hidden md:block dark:bg-gray-800 flex flex-col"
@@ -193,8 +193,8 @@
 // 使用新的composable获取分类数据
 const { categories } = await import('~/assets/js/useCategories').then(m => m.useCategories());
 
-// 获取语言管理composable
-const { currentLanguage, setLanguage, t: $t } = await import('~/assets/js/useLanguage').then(m => m.useLanguage());
+// 修改: 使用标准的i18n composable
+const { locale: currentLanguage, setLocale } = useI18n();
 
 // 响应式状态
 const selectedCategory = inject('selectedCategory', ref(null));
@@ -244,6 +244,14 @@ const updateDarkMode = (isDarkMode) => {
 // 新增: 切换语言下拉菜单显示状态
 const toggleLanguageDropdown = () => {
   showLanguageDropdown.value = !showLanguageDropdown.value;
+};
+
+// 修改: 使用i18n模块的setLocale方法设置语言
+const setLanguage = (lang) => {
+  setLocale(lang);
+  if (typeof localStorage !== 'undefined') {
+    localStorage.setItem('language', lang);
+  }
 };
 
 // 新增: 点击其他地方关闭语言下拉菜单

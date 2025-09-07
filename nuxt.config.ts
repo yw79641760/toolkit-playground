@@ -16,7 +16,8 @@ export default defineNuxtConfig({
   },
   // 添加modules配置
   modules: [
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/i18n'
   ],
   app: {
     head: {
@@ -29,9 +30,31 @@ export default defineNuxtConfig({
       ]
     }
   },
-  // 添加插件配置
-  plugins: [
-    '~/plugins/i18n.ts'
-  ]
-
+  // i18n configuration
+  i18n: {
+    locales: [
+      {
+        code: 'zh-CN',
+        name: '中文',
+        file: 'zh-CN.json'
+      },
+      {
+        code: 'en',
+        name: 'English',
+        file: 'en.json'
+      }
+    ],
+    lazy: true,
+    langDir: './locales/', // Path is relative to the project root
+    defaultLocale: 'zh-CN',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root'
+    },
+    // 添加配置以避免在URL中添加语言前缀
+    strategy: 'no_prefix',
+    // 禁用语言切换时的重定向
+    skipSettingLocaleOnNavigate: true
+  }
 })
